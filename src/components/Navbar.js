@@ -2,6 +2,7 @@
 
 import CloseIcon from '@/svg/CloseIcon'
 import MenuIcon from '@/svg/MenuIcon'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useDebugValue, useEffect, useState } from 'react'
@@ -11,7 +12,7 @@ function Navbar() {
   const navElements = [
     'Home',
     'Campaigns',
-    'Gallary',
+    'Gallery',
     'Certificates',
     'About Us',
     'Contact Us',
@@ -37,9 +38,15 @@ function Navbar() {
   return (
     <>
       <div className="h-16 flex items-center sticky top-0 z-10 bg-primary-base dark:bg-secondary-dark dark:text-primary-base px-4 lg:px-20 shadow-lg">
-        <Link href="/client/home">
-          <div className="border-2 border-secondary-dark dark:border-primary-base rounded-full h-12 w-12 flex items-center justify-center hover:scale-105 transition-all ease-in-out">
-            Logo
+        <Link href="/client">
+          <div className=" rounded-full h-12 w-12 flex items-center justify-center hover:scale-110 transition-all ease-in-out">
+            <Image
+              src="/images/logo-image.jpg"
+              alt="Sai Seva Samiti"
+              width={50}
+              height={50}
+              className="w-full h-full rounded-full"
+            />
           </div>
         </Link>
         <div

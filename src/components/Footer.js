@@ -14,12 +14,13 @@ import TwitterIcon from '@/svg/TwitterIcon'
 import YoutubeIcon from '@/svg/YoutubeIcon'
 import API from '@/axios'
 import { useToast } from './ui/use-toast'
+import Image from 'next/image'
 
 function Footer() {
   const { toast } = useToast()
   const quickLinks = [
     'Home',
-    'Gallary',
+    'Gallery',
     'About Us',
     'Contact Us',
     'Campaigns',
@@ -60,8 +61,14 @@ function Footer() {
             </h1>
           </div>
 
-          <div className="h-40 w-40 hidden lg:flex items-center justify-center border rounded-full">
-            Logo
+          <div className="h-40 w-40 hidden lg:flex items-center justify-center rounded-full">
+            <Image
+              src="/images/logo-image.jpg"
+              alt="logo"
+              height={100}
+              width={100}
+              className="w-full h-full rounded-full"
+            />
           </div>
 
           <div className="m-8">
