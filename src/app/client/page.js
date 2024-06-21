@@ -1,14 +1,16 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-export default function Home() {
+function ClientPage() {
   const { push } = useRouter()
 
   useEffect(() => {
-    push('/client')
+    push('/client/home')
   }, [push])
 
   return <div></div>
 }
+
+export default ClientPage
