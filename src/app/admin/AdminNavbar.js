@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {
   Command,
@@ -7,8 +9,10 @@ import {
   CommandSeparator,
 } from '@/components/ui/command'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 function AdminNavbar() {
+  const router = useRouter()
   const navItems = [
     {
       group: 'Management',
@@ -41,6 +45,13 @@ function AdminNavbar() {
       ],
     },
   ]
+
+  const handleLogout = () => {
+    document.cookie =
+      'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    router.push('/admin')
+  }
 
   return (
     <div className="font-semibold h-[100vh] dark:text-secondary-base flex flex-col border-r-2 border-primary-dark/50">
@@ -79,7 +90,12 @@ function AdminNavbar() {
         </Command>
       </div>
       <div className="h-12 flex items-center pl-8 border-t-2 border-primary-dark/50">
-        Logout
+        <div
+          className="cursor-pointer hover:scale-110 transition-all ease-in-out"
+          onClick={handleLogout}
+        >
+          Logout
+        </div>
       </div>
     </div>
   )
