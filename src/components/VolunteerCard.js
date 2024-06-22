@@ -8,10 +8,10 @@ function VolunteerCard({ volunteer }) {
         <Image
           src={`${volunteer.image}` || '/images/volunteer-image.jpg'}
           width={500}
-          height={1000}
+          height={500}
           objectFit="contain"
           alt=""
-          className="rounded-lg"
+          className="rounded-lg h-full"
         />
         <div className="absolute bottom-0 left-0 h-12 w-full flex flex-col  justify-center bg-gradient-to-br from-secondary-dark/[0.54] to-accent-base/[0.54] backdrop-blur-lg rounded-bl-lg rounded-br-lg group-hover:h-36 transition-all ease-in-out p-4">
           <h1 className="text-xl font-semibold tracking-wide">

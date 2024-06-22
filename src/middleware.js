@@ -13,7 +13,7 @@ function middleware(req) {
   }
 
   if (pathname.startsWith('/login') && loggedIn) {
-    return NextResponse.next()
+    return NextResponse.redirect(new URL('/admin', req.url))
   }
 
   return NextResponse.next()

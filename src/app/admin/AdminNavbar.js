@@ -23,7 +23,7 @@ function AdminNavbar() {
       items: [
         { URL: '/admin/campaigns', itemValue: 'Campaigns' },
         { URL: '/admin/certificates', itemValue: 'Certificates' },
-        { URL: '/admin/gallary', itemValue: 'Gallary' },
+        { URL: '/admin/gallery', itemValue: 'Gallery' },
         { URL: '/admin/newsletter', itemValue: 'Newsletter' },
       ],
     },
