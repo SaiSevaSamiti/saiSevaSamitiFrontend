@@ -78,7 +78,7 @@ function DonatePage() {
           </div>
           <div className="w-full flex items-center py-4">
             <Tabs
-              defaultValue="qr"
+              defaultValue="bankDetails"
               className="w-full flex flex-col justify-center"
             >
               <TabsList className="bg-secondary-base/90 dark:bg-secondary-base/10 text-secondary-dark dark:text-primary-base">
@@ -112,10 +112,11 @@ function DonatePage() {
                 </div>
                 <div className="w-full h-full text-xl font-medium tracking-wide flex flex-col lg:px-12 py-4">
                   <h3>Bank Details</h3>
-                  <p>Account Name: Sai Seva Samiti</p>
-                  <p>Account Number: 1234567890</p>
-                  <p>Bank Name: HDFC Bank</p>
-                  <p>IFSC Code: HDFC0001234</p>
+                  <p>Account Name: Sainyee Sewa Samitti</p>
+                  <p>Account Number: 61050682251</p>
+                  <p>Bank Name: State Bank of India</p>
+                  <p>Branch: Nagaur K.U.M (Krishi Upaj Mandi)</p>
+                  <p>IFSC Code: SBIN0031528</p>
                 </div>
                 <div className="flex w-full justify-center text-lg font-semibold">
                   After Donating, Fill out the following form, to get your name

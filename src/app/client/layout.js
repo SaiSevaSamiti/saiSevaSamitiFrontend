@@ -9,9 +9,9 @@ export default function RootLayout({ children }) {
     <div>
       <div className="h-16 flex place-content-center tracking-wider font-bold px-4 lg:px-20">
         <div className="flex place-items-center text-primary-dark ">
-          <Link href="tel:+919988776655">
+          <Link href="tel:+919460522700">
             <div className="mr-8 hover:text-black hover:dark:text-primary-base cursor-pointer">
-              +91 99887 76655
+              +91 94605 22700
             </div>
           </Link>
           <Link href="mailto:saisevasamiti.nagaur@gmail.com">

@@ -93,13 +93,12 @@ function ContactUsPage() {
       <div className="py-8 flex flex-col lg:flex-row gap-2">
         <div className="w-1/2 hidden lg:flex items-center justify-center">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56774.207058347034!2d73.68332233393394!3d27.20696737680514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396a9170adb7a653%3A0x6940f47129cdaa6e!2sNagaur%2C%20Rajasthan%20341001!5e0!3m2!1sen!2sin!4v1718101694882!5m2!1sen!2sin"
-            width="650"
-            height="645"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d527.4932221423949!2d73.7239139153321!3d27.202276490450213!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396a910cb57ac1e5%3A0x1f34db68fd8cbc1f!2s2629%2C%202629%2C%20Station%20Rd%2C%20Sainik%20Basti%2C%20Nagaur%2C%20Rajasthan%20341001!5e0!3m2!1sen!2sin!4v1719059091002!5m2!1sen!2sin"
+            width="600"
+            height="450"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            className="rounded-lg shadow-md shadow-secondary-dark dark:shadow-primary-base"
           ></iframe>
         </div>
         <div className="w-full flex items-center justify-center lg:hidden">

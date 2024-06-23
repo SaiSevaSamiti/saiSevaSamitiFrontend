@@ -91,17 +91,21 @@ function Footer() {
             <h1 className="text-primary-base font-bold tracking-wider text-xl py-4">
               Get in Touch
             </h1>
-            <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
-              <h3 className="font-extrabold p-2">
-                <LocationIcon />
-              </h3>
-              <p className="px-2"> Address </p>
-            </div>
+            <Link href="https://maps.app.goo.gl/UWa7egPUuGz5jSnv8">
+              <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
+                <h3 className="font-extrabold p-2">
+                  <LocationIcon />
+                </h3>
+                <p className="px-2"> Address </p>
+              </div>
+            </Link>
             <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
               <h3 className="font-extrabold p-2">
                 <PhoneIcon />
               </h3>
-              <p className="px-2"> +91 99887 76655 </p>
+              <Link href="tel:+919460522700">
+                <p className="px-2"> +91 94605 22700 </p>
+              </Link>
             </div>
             <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out mb-4">
               <h3 className="font-extrabold p-2">
@@ -111,7 +115,9 @@ function Footer() {
             </div>
             <div className="flex items-center justify-between font-semibold tracking-wide text-primary-base p-1">
               <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
-                <WhatsappIcon />
+                <Link href="https://wa.me/+919460522700" target="_blank">
+                  <WhatsappIcon />
+                </Link>
               </div>
               <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
                 <FacebookIcon />

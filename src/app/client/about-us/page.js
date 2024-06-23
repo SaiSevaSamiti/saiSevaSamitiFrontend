@@ -50,7 +50,7 @@ function AboutUsPage() {
         const res = await API.get('/members')
         const { members } = res.data
 
-        setMembers(members)
+        setMembers(members.sort((a, b) => a.priority - b.priority))
       } catch (error) {
         console.error('Failed to fetch members:', error)
       }

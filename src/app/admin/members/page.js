@@ -132,7 +132,6 @@ function MembersPage() {
                   type="file"
                   name="image"
                   placeholder="Profile Image"
-                  required
                   onChange={handleImageUpload}
                 />
                 <Input
