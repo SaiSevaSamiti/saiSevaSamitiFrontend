@@ -3,23 +3,22 @@ import React from 'react'
 
 function VolunteerCard({ volunteer }) {
   return (
-    <div className="aspect-[1/1] w-full p-0.5 bg-gradient-to-tr from-primary-dark to-accent-base  rounded-lg group hover:scale-105 transition-all ease-in-out">
-      <div className="h-full w-full text-secondary-dark dark:text-primary-base bg-primary-base dark:bg-secondary-dark rounded-lg flex flex-col relative transition-all ease-in-out p-1">
+    <div className="aspect-[1/1] w-full rounded-2xl bg-gradient-to-tr from-primary-dark to-accent-base p-[2px] transition-transform duration-300 group hover:scale-105 shadow-lg">
+      <div className="relative w-full h-full overflow-hidden rounded-2xl bg-primary-base dark:bg-secondary-dark">
         <Image
-          src={`${volunteer.image}` || '/images/volunteer-image.jpg'}
+          src={volunteer.image || '/images/volunteer-image.jpg'}
           width={500}
           height={500}
-          objectFit="contain"
-          alt=""
-          className="rounded-lg h-full"
+          alt={`${volunteer.name}'s photo`}
+          className="object-cover w-full h-full transition-transform duration-300 transform rounded-2xl group-hover:scale-105"
         />
-        <div className="absolute bottom-0 left-0 h-12 w-full flex flex-col  justify-center bg-gradient-to-br from-secondary-dark/[0.54] to-accent-base/[0.54] backdrop-blur-lg rounded-bl-lg rounded-br-lg group-hover:h-36 transition-all ease-in-out p-4">
-          <h1 className="text-xl font-semibold tracking-wide">
+        <div className="absolute bottom-0 left-0 flex flex-col items-center w-full h-16 px-4 py-3 overflow-hidden transition-all duration-300 ease-in-out group-hover:h-20 bg-gradient-to-br from-secondary-dark/60 to-accent-base/60 backdrop-blur-md text-primary-base dark:text-primary-base rounded-b-2xl">
+          <h1 className="text-lg font-bold tracking-wide sm:text-xl">
             {volunteer.name}
           </h1>
-          <div className="hidden group-hover:block transtion-all ease-in-out">
+          <p className="mt-1 text-sm transition-opacity duration-300 opacity-0 group-hover:opacity-100">
             {volunteer.role}
-          </div>
+          </p>
         </div>
       </div>
     </div>

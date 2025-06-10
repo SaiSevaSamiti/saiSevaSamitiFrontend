@@ -5,7 +5,7 @@ import { ParallaxBanner } from 'react-scroll-parallax'
 
 function HeroSection3() {
   return (
-    <div className="">
+    <div className="w-full">
       <ParallaxBanner
         layers={[
           {
@@ -18,31 +18,29 @@ function HeroSection3() {
           {
             speed: -5,
             children: (
-              <div className="h-full w-full flex items-center justify-center bg-secondary-dark/[0.24] backdrop-blur-md text-secondary-dark">
-                <div className="h-[45%] lg:h-[75%] aspect-auto lg:aspect-square flex flex-col items-center justify-center border-2 mx-4 lg:mx-20 p-12 rounded-xl shadow-xl bg-secondary-base/[0.44] dark:bg-secondary-base/[0.44] dark:brightness-150 backdrop-blur-xl">
-                  <h1 className="text-3xl lg:text-5xl font-extrabold lg:text-center">
+              <div className="flex items-center justify-center w-full h-full">
+                <div className="max-w-2xl px-8 py-12 mx-6 text-center border shadow-2xl lg:mx-20 rounded-3xl border-white/20 backdrop-blur-xl bg-white/10 dark:bg-white/10">
+                  <h1 className="text-3xl font-extrabold leading-tight tracking-wide text-white sm:text-4xl lg:text-5xl">
                     Want to become a Volunteer{' '}
-                    <span className="text-accent-base brightness-50">?</span>
+                    <span className="text-accent-base brightness-125">?</span>
                   </h1>
-                  <div className="text-justify font-semibold text-md lg:text-xl tracking-wide my-8">
+
+                  <p className="mt-6 font-medium text-md sm:text-lg lg:text-xl text-white/90">
                     Real change and development can only happen with active
                     involvement from civil society. Join us.
-                  </div>
-                  <div>
+                  </p>
+
+                  <div className="w-full mt-10 space-y-4">
                     <Link href="/client/contact-us">
                       <Button
                         text="Become a Volunteer"
-                        className={
-                          'bg-secondary-dark rounded-lg border-secondary-dark w-full hover:border-primary-base dark:hover:bg-transparent dark:hover:text-primary-base hover:text-primary-base '
-                        }
+                        className="w-full transition-all rounded-lg bg-secondary-dark border-secondary-dark hover:dark:bg-transparent hover:text-primary-base hover:border-primary-base"
                       />
                     </Link>
                     <Link href="/client/donate">
                       <Button
                         text="Donate Now"
-                        className={
-                          'bg-transparent rounded-lg border-primary-base w-full mt-4 hover:border-secondary-dark hover:text-secondary-dark dark:hover:text-secondary-base'
-                        }
+                        className="w-full mt-6 text-white transition-all bg-transparent rounded-lg border-primary-base hover:bg-primary-base hover:text-white dark:hover:bg-secondary-dark dark:hover:text-white dark:hover:border-secondary-dark "
                       />
                     </Link>
                   </div>

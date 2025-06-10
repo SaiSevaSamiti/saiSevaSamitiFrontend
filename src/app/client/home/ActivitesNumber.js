@@ -1,23 +1,45 @@
 import API from '@/axios'
-import GroupIcon from '@/svg/GroupIcon'
-import LocationIcon from '@/svg/LocationIcon'
-import PersonIcon from '@/svg/PersonIcon'
-import VolunteerIcon from '@/svg/VolunteerIcon'
 import React, { useEffect, useState } from 'react'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
-function ActivitesNumber() {
+// Lucide Icons
+import { User, MapPin, Users, Handshake, Plus } from 'lucide-react'
+
+function ActivitiesNumber() {
   const [activitiesNumber, setActivitiesNumber] = useState({})
 
   useEffect(() => {
     async function fetchData() {
       const res = await API.get('/activitiesNumber')
-      const { actNumber } = await res.data
+      const { actNumber } = res.data
       setActivitiesNumber(actNumber)
     }
 
     fetchData()
   }, [])
+
+  const stats = [
+    {
+      icon: <User className="w-16 h-16" />,
+      value: activitiesNumber.happyPeople,
+      label: 'Happy People',
+    },
+    {
+      icon: <MapPin className="w-16 h-16" />,
+      value: activitiesNumber.offices,
+      label: 'Offices',
+    },
+    {
+      icon: <Users className="w-16 h-16" />,
+      value: activitiesNumber.staff,
+      label: 'Staff',
+    },
+    {
+      icon: <Handshake className="w-16 h-16" />,
+      value: activitiesNumber.volunteers,
+      label: 'Volunteers',
+    },
+  ]
 
   return (
     <div className="bg-primary-base dark:bg-secondary-dark">
@@ -34,59 +56,36 @@ function ActivitesNumber() {
           {
             speed: -1,
             children: (
-              <div className="h-full flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-32">
-                <div className="flex flex-col items-center justify-center">
-                  <div className="text-secondary-base">
-                    <PersonIcon />
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4">
-                    {activitiesNumber.happyPeople}
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wide mt-4 ">
-                    Happy People
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div className="text-secondary-base">
-                    <LocationIcon size="75px" />
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4">
-                    {activitiesNumber.offices}
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4 ">
-                    Offices
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div className="text-secondary-base">
-                    <GroupIcon />
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4">
-                    {activitiesNumber.staff}
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4 ">
-                    Staff
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div className="text-secondary-base">
-                    <VolunteerIcon />
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4">
-                    {activitiesNumber.volunteers}
-                  </div>
-                  <div className="text-3xl text-secondary-dark dark:text-primary-dark font-extrabold tracking-wider mt-4 ">
-                    Volunteers
-                  </div>
+              <div className="w-full h-full py-20 bg-black/10 dark:bg-white/5">
+                <div className="flex flex-col items-center justify-center h-full gap-10 px-4 py-10 lg:flex-row lg:gap-20">
+                  {stats.map((stat, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col items-center text-center transition-all duration-300 group hover:scale-105"
+                    >
+                      <div className="mb-4 transition-transform text-accent-base group-hover:scale-110">
+                        {stat.icon}
+                      </div>
+                      <div className="flex items-baseline text-4xl font-black tracking-wider text-secondary-dark dark:text-primary-base">
+                        {stat.value ?? '—'}
+                        <span>
+                          <Plus />
+                        </span>
+                      </div>
+                      <div className="mt-1 text-xl font-semibold tracking-wide text-secondary-dark dark:text-primary-base">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             ),
           },
         ]}
-        className="aspect-[0.7/2] lg:aspect-[2/1]"
+        className="h-[90vh] md:h-[500px] lg:h-[600px]"
       />
     </div>
   )
 }
 
-export default ActivitesNumber
+export default ActivitiesNumber

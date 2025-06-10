@@ -1,24 +1,32 @@
 import React from 'react'
 
-function Card({ title, content, icon, className, glow = true }) {
+function Card({ title, content, icon, className = '', glow = true }) {
   return (
     <div
-      className={` w-full p-0.5 bg-gradient-to-tr from-primary-dark to-accent-base  rounded-lg ${
+      className={`relative w-full p-[1px] rounded-2xl transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl ${
         glow
-          ? 'relative before:absolute before:inset-0 before:bg-gradient-to-bl before:from-secondary-base before:to-primary-dark before:blur-[300px] before:-z-10'
-          : ''
+          ? 'bg-gradient-to-br from-primary-dark to-accent-base'
+          : 'bg-primary-dark'
       } ${className}`}
     >
-      <div className="h-full w-full text-secondary-dark dark:text-primary-base bg-primary-base dark:bg-secondary-dark rounded-lg p-4 flex flex-col">
-        <div className="flex justify-center p-8 text-secondary-dark dark:text-primary-base">
-          {icon}
+      {glow && (
+        <div className="absolute inset-0 z-0 rounded-2xl blur-[120px] opacity-30 bg-gradient-to-tr from-secondary-base to-primary-dark" />
+      )}
+
+      <div className="relative z-10 flex flex-col w-full h-full p-6 shadow-md rounded-2xl bg-primary-base/70 dark:bg-secondary-dark/70 backdrop-blur-md text-secondary-dark dark:text-primary-base">
+        <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center w-16 h-16 p-3 shadow-inner sm:w-20 sm:h-20 rounded-xl bg-gradient-to-tr from-accent-base to-secondary-dark bg-opacity-20">
+            {icon}
+          </div>
         </div>
-        <div className="bg-gradient-to-bl from-primary-dark to-accent-base flex items-center justify-center text-3xl font-extrabold bg-clip-text text-transparent">
+
+        <h3 className="mb-4 text-2xl font-extrabold text-center text-transparent sm:text-3xl bg-gradient-to-bl from-primary-dark to-accent-base bg-clip-text">
           {title}
-        </div>
-        <div className="h-full flex items-center justify-center text-justify p-4 font-semibold ">
+        </h3>
+
+        <p className="text-sm font-medium leading-relaxed text-justify sm:text-base">
           {content}
-        </div>
+        </p>
       </div>
     </div>
   )

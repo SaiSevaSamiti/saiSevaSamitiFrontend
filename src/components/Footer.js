@@ -1,23 +1,28 @@
 'use client'
 
-import ArrowRightIcon from '@/svg/ArrowRightIcon'
 import Link from 'next/link'
 import React from 'react'
 import slugify from 'slugify'
 import Button from './Button'
-import LocationIcon from '@/svg/LocationIcon'
-import PhoneIcon from '@/svg/PhoneIcon'
-import EmailIcon from '@/svg/EmailIcon'
-import WhatsappIcon from '@/svg/WhatsappIcon'
-import FacebookIcon from '@/svg/FacebookIcon'
-import TwitterIcon from '@/svg/TwitterIcon'
-import YoutubeIcon from '@/svg/YoutubeIcon'
 import API from '@/axios'
 import { useToast } from './ui/use-toast'
 import Image from 'next/image'
 
+// Lucide React icons
+import {
+  ArrowRight,
+  MapPin,
+  Phone,
+  Mail,
+  MessageCircle,
+  Facebook,
+  Twitter,
+  Youtube,
+} from 'lucide-react'
+
 function Footer() {
   const { toast } = useToast()
+
   const quickLinks = [
     'Home',
     'Gallery',
@@ -29,16 +34,13 @@ function Footer() {
 
   const handleNewsLetterForm = async (e) => {
     e.preventDefault()
-
-    const formData = new FormData(e.target)
+    const formData = new FormData(e.currentTarget)
     const email = formData.get('email')
 
     try {
       const res = await API.post('/newsletter', { email })
       if (res.status === 200) {
-        toast({
-          title: 'Subscribed Successfully',
-        })
+        toast({ title: 'Subscribed Successfully' })
       } else {
         toast({
           title: 'Error',
@@ -46,117 +48,131 @@ function Footer() {
         })
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
   return (
     <>
-      <div className=" w-full bg-primary-dark shadow-xl px-4 lg:px-20">
-        <div className="flex flex-col lg:flex-row justify-between items-center">
-          <div className="m-8 lg:m-0 max-w-min">
-            <h1 className="text-6xl font-extrabold text-secondary-dark">
-              Sai Seva Samiti
-              <span className="text-primary-base">.</span>
+      <footer className="w-full px-6 py-12 shadow-2xl bg-primary-dark text-primary-base lg:px-20">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <h1 className="mb-4 text-4xl font-extrabold sm:text-5xl text-secondary-dark">
+              Sai Seva Samiti<span className="text-primary-base">.</span>
             </h1>
+            <div className="hidden mt-6 overflow-hidden border-4 rounded-full h-28 w-28 border-primary-base lg:block">
+              <Image
+                src="/images/logo-image.jpg"
+                alt="Sai Seva Samiti Logo"
+                width={112}
+                height={112}
+                className="object-cover w-full h-full"
+              />
+            </div>
           </div>
 
-          <div className="h-40 w-40 hidden lg:flex items-center justify-center rounded-full">
-            <Image
-              src="/images/logo-image.jpg"
-              alt="logo"
-              height={100}
-              width={100}
-              className="w-full h-full rounded-full"
-            />
-          </div>
-
-          <div className="m-8">
-            <h1 className="text-primary-base font-bold tracking-wider text-xl py-4">
+          {/* Quick Links */}
+          <div>
+            <h2 className="mb-4 text-xl font-bold tracking-wide">
               Quick Links
-            </h1>
-            {quickLinks.map((element, index) => (
-              <Link key={index} href={slugify(element, { lower: true })}>
-                <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
-                  <div className="px-1">
-                    <ArrowRightIcon />
-                  </div>
-                  {element}
+            </h2>
+            <ul className="space-y-2">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <Link href={`/client/${slugify(link, { lower: true })}`}>
+                    <div className="flex items-center gap-2 transition opacity-75 hover:opacity-100 hover:translate-x-1">
+                      <ArrowRight className="w-4 h-4" />
+                      <span className="font-medium">{link}</span>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h2 className="mb-4 text-xl font-bold tracking-wide">
+              Get in Touch
+            </h2>
+            <div className="flex flex-col justify-center space-y-3">
+              <Link
+                href="https://maps.app.goo.gl/UWa7egPUuGz5jSnv8"
+                target="_blank"
+              >
+                <div className="flex items-center gap-2 transition opacity-75 hover:opacity-100">
+                  <MapPin className="w-6 h-10" />
+                  <span>Address</span>
                 </div>
               </Link>
-            ))}
-          </div>
-
-          <div className="m-8">
-            <h1 className="text-primary-base font-bold tracking-wider text-xl py-4">
-              Get in Touch
-            </h1>
-            <Link href="https://maps.app.goo.gl/UWa7egPUuGz5jSnv8">
-              <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
-                <h3 className="font-extrabold p-2">
-                  <LocationIcon />
-                </h3>
-                <p className="px-2"> Address </p>
-              </div>
-            </Link>
-            <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out ">
-              <h3 className="font-extrabold p-2">
-                <PhoneIcon />
-              </h3>
               <Link href="tel:+919460522700">
-                <p className="px-2"> +91 94605 22700 </p>
+                <div className="flex items-center gap-2 transition opacity-75 hover:opacity-100">
+                  <Phone className="w-6 h-10" />
+                  <span>+91 94605 22700</span>
+                </div>
+              </Link>
+              <div className="flex items-center gap-2 transition opacity-75 cursor-pointer hover:opacity-100">
+                <Mail className="w-6 h-10" />
+                <span>saisevasamiti.nagaur@gmail.com</span>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="flex items-center gap-4 mt-6">
+              <Link href="https://wa.me/+919460522700" target="_blank">
+                <div className="transition cursor-pointer hover:scale-110">
+                  <MessageCircle className="w-10 h-10" />
+                </div>
+              </Link>
+              <Link href="#" target="_blank">
+                <div className="transition cursor-pointer hover:scale-110">
+                  <Facebook className="w-10 h-10" />
+                </div>
+              </Link>
+              <Link href="#" target="_blank">
+                <div className="transition cursor-pointer hover:scale-110">
+                  <Twitter className="w-10 h-10" />
+                </div>
+              </Link>
+              <Link href="#" target="_blank">
+                <div className="transition cursor-pointer hover:scale-110">
+                  <Youtube className="w-10 h-10" />
+                </div>
               </Link>
             </div>
-            <div className="flex items-center font-semibold tracking-wide text-primary-base opacity-65 p-1 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out mb-4">
-              <h3 className="font-extrabold p-2">
-                <EmailIcon />
-              </h3>
-              <p className="px-2"> saisevasamiti.nagaur@gmail.com </p>
-            </div>
-            <div className="flex items-center justify-between font-semibold tracking-wide text-primary-base p-1">
-              <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
-                <Link href="https://wa.me/+919460522700" target="_blank">
-                  <WhatsappIcon />
-                </Link>
-              </div>
-              <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
-                <FacebookIcon />
-              </div>
-              <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
-                <TwitterIcon />
-              </div>
-              <div className="opacity-65 hover:scale-105 hover:text-primary-base hover:opacity-100 transition-all ease-in-out">
-                <YoutubeIcon />
-              </div>
-            </div>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h2 className="mb-4 text-xl font-bold tracking-wide">
+              Join Our Newsletter
+            </h2>
+            <form
+              onSubmit={handleNewsLetterForm}
+              className="flex flex-col gap-4"
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                className="px-4 py-2 border-2 rounded-xl border-primary-base bg-primary-base text-secondary-dark dark:text-primary-base dark:border-secondary-dark focus:outline-none focus:ring-2 focus:ring-accent-base/50"
+              />
+              <Button
+                text="Subscribe"
+                type="submit"
+                outline
+                className="flex items-center justify-center gap-2 transition duration-200 border-secondary-dark/75 text-secondary-dark bg-secondary-base/75 hover:bg-secondary-dark/75"
+              />
+            </form>
           </div>
         </div>
-      </div>
+      </footer>
 
-      <div
-        id="newsletter"
-        className="bg-primary-base text-secondary-dark dark:bg-secondary-dark dark:text-primary-base font-semibold flex flex-col lg:flex-row items-center justify-center py-4"
-      >
-        SignUp for Our Newsletter
-        <form
-          onSubmit={handleNewsLetterForm}
-          className="flex flex-col items-center lg:flex-row px-8 pt-2"
-        >
-          <input
-            type="text"
-            name="email"
-            className="rounded-full mx-8 px-4 h-12 w-full lg:w-56 text-secondary-dark
-            border-2 border-primary-dark dark:border-secondary-dark"
-            placeholder="email@gmail.com"
-            required
-          />
-          <Button
-            text="Subscribe"
-            type={'submit'}
-            outline={true}
-            className={'mt-4 lg:my-0'}
-          />
-        </form>
+      {/* Subfooter */}
+      <div className="py-3 text-sm font-semibold text-center bg-primary-base text-secondary-dark dark:bg-secondary-dark dark:text-primary-base">
+        © {new Date().getFullYear()} Sai Seva Samiti. All rights reserved.
       </div>
     </>
   )
