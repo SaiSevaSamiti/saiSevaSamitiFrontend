@@ -1,15 +1,14 @@
 'use client'
 
-import CloseIcon from '@/svg/CloseIcon'
-import MenuIcon from '@/svg/MenuIcon'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import React, { useDebugValue, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import slugify from 'slugify'
+import { Menu, X, XIcon } from 'lucide-react'
 
-function Navbar() {
-  const navElements = [
+export default function Navbar() {
+  const navItems = [
     'Home',
     'Campaigns',
     'Gallery',
@@ -17,72 +16,86 @@ function Navbar() {
     'About Us',
     'Contact Us',
   ]
-  const currentRoute = usePathname().split('/')[2]
-  const [path, setPath] = useState('')
-  const [isNavbarOpen, setIsNavarOpen] = useState(false)
+  const pathname = usePathname()
+  const currentPath = pathname?.split('/').pop() || ''
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    setPath(currentRoute)
-    // Prevent body scrolling when the navbar is open
-    if (isNavbarOpen) {
-      document.body.classList.add('overflow-hidden')
-    } else {
-      document.body.classList.remove('overflow-hidden')
-    }
-  }, [path, currentRoute, isNavbarOpen])
-
-  const handleNavbar = () => {
-    setIsNavarOpen(!isNavbarOpen)
-  }
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+  }, [menuOpen])
 
   return (
-    <>
-      <div className="h-16 flex items-center sticky top-0 z-10 bg-primary-base dark:bg-secondary-dark dark:text-primary-base px-4 lg:px-20 shadow-lg">
-        <Link href="/client">
-          <div className=" rounded-full h-12 w-12 flex items-center justify-center hover:scale-110 transition-all ease-in-out">
-            <Image
-              src="/images/logo-image.jpg"
-              alt="Sai Seva Samiti"
-              width={50}
-              height={50}
-              className="w-full h-full rounded-full"
-            />
-          </div>
+    <header className="sticky top-0 z-20 shadow-md bg-primary-base dark:bg-secondary-dark">
+      <div className="flex justify-between w-full h-16 px-4 mx-auto lg:px-20">
+        {/* Logo */}
+        <Link href="/client" className="flex items-center">
+          <Image
+            src="/images/logo-image.jpg"
+            alt="Sai Seva Samiti"
+            width={48}
+            height={48}
+            className="transition-transform rounded-full hover:scale-110"
+          />
+          <span className="hidden ml-3 text-2xl font-extrabold lg:block text-secondary-dark dark:text-secondary-base">
+            Sai Seva Samiti
+          </span>
         </Link>
-        <div
-          className="m-auto mr-0 cursor-pointer lg:hidden"
-          onClick={handleNavbar}
+
+        {/* Hamburger / Mobile Toggle */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="p-2 transition rounded-md lg:hidden text-secondary-dark dark:text-primary-base hover:bg-secondary-base/30"
         >
-          <MenuIcon />
-        </div>
-        <div
-          className={`flex place-items-center place-content-center m-auto mr-0 bg-primary-base dark:bg-secondary-dark h-[100vh] top-0 w-full absolute flex-col lg:flex-row lg:relative lg:dark:bg-secondary-dark lg:h-12 lg:w-[40.1vw] transition-all ease-in-out ${
-            isNavbarOpen ? 'left-0' : '-left-[100%] lg:left-0'
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Navigation Menu */}
+        <nav
+          className={`fixed inset-0 z-30 lg:static lg:z-auto bg-primary-base dark:bg-secondary-dark lg:bg-transparent transform transition-transform duration-300 lg:flex lg:items-center ${
+            menuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
           }`}
         >
-          {navElements.map((element, index) => (
-            <Link key={index} href={slugify(element, { lower: true })}>
-              <div
-                className={
-                  slugify(element, { lower: true }) === path
-                    ? 'text-primary-dark lg:ml-8 font-semibold tracking-wide hover:scale-105 transition-all border-b-primary-dark border-b-2 mb-12 lg:mb-0 '
-                    : 'lg:ml-8 font-semibold tracking-wide hover:text-primary-dark hover:scale-105 transition-all mb-12 lg:mb-0 '
-                }
-              >
-                {element}
-              </div>
-            </Link>
-          ))}
-          <div
-            className="border-2 border-black rounded-full p-4 dark:border-primary-base hover:scale-105 transition-all ease-in-out cursor-pointer lg:hidden"
-            onClick={handleNavbar}
-          >
-            <CloseIcon />
+          {/* Close Button for Mobile Nav */}
+          <div className="absolute top-4 right-4 lg:hidden">
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="p-2 transition rounded-md text-secondary-dark dark:text-primary-base hover:bg-secondary-base/30"
+            >
+              <X size={28} />
+            </button>
           </div>
-        </div>
+
+          <ul className="flex flex-col items-center justify-center h-full p-8 space-y-6 lg:flex-row lg:space-x-6 lg:space-y-0 lg:h-auto lg:p-0">
+            {navItems.map((item) => {
+              const href = `/client/${slugify(item, { lower: true })}`
+              const isActive = currentPath === slugify(item, { lower: true })
+              return (
+                <li key={item}>
+                  <Link href={href} onClick={() => setMenuOpen(false)}>
+                    <span
+                      className={`block text-lg font-semibold transition-colors hover:text-accent-base ${
+                        isActive
+                          ? 'text-accent-base'
+                          : 'text-secondary-dark dark:text-primary-base'
+                      }`}
+                    >
+                      {item}
+                    </span>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </nav>
       </div>
-    </>
+
+      {/* Optional backdrop blur to close on click */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-20 bg-black/50 backdrop-blur-sm lg:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+    </header>
   )
 }
-
-export default Navbar
