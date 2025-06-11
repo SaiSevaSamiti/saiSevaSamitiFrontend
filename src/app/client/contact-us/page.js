@@ -6,13 +6,13 @@ import { useToast } from '@/components/ui/use-toast'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import React from 'react'
 
-const ContactUsItem = ({ icon: Icon, title }) => (
+const ContactUsItem = ({ icon: Icon, title, className }) => (
   <div className="w-full lg:w-auto grow p-0.5 bg-gradient-to-tr from-primary-dark to-accent-base rounded-lg">
     <div className="flex items-center gap-4 p-4 rounded-lg shadow-lg bg-primary-base dark:bg-secondary-dark text-secondary-dark dark:text-primary-base">
       <div className="p-3 text-white rounded-full shadow bg-gradient-to-tr from-primary-dark to-accent-base">
         <Icon className="w-6 h-6" />
       </div>
-      <div className="text-xl font-semibold">{title}</div>
+      <div className={`font-semibold ${className}`}>{title}</div>
     </div>
   </div>
 )
@@ -65,9 +65,21 @@ function ContactUsPage() {
       {/* Contact Info Cards */}
       <div className="py-12">
         <div className="flex flex-col items-center justify-center gap-6 lg:flex-row">
-          <ContactUsItem icon={MapPin} title="Nagaur, Rajasthan" />
-          <ContactUsItem icon={Mail} title="saisevasamiti.nagaur@gmail.com" />
-          <ContactUsItem icon={Phone} title="+91 9876543210" />
+          <ContactUsItem
+            icon={MapPin}
+            title="Nagaur, Rajasthan"
+            className="text-sm sm:text-xl"
+          />
+          <ContactUsItem
+            icon={Mail}
+            title="saisevasamiti.nagaur@gmail.com"
+            className="text-sm sm:text-xl"
+          />
+          <ContactUsItem
+            icon={Phone}
+            title="+91 9876543210"
+            className="text-sm sm:text-xl"
+          />
         </div>
       </div>
 

@@ -9,6 +9,7 @@ import HeroSection2 from './HeroSection2'
 import Volunteers from './Volunteers'
 import ActivitesNumber from './ActivitesNumber'
 import HeroSection3 from './HeroSection3'
+import TopMembers from '../about-us/TopMembers'
 
 function HomePage() {
   return (
@@ -19,7 +20,8 @@ function HomePage() {
         <ActivitesNumber />
         <KnowAbout />
         <HeroSection2 />
-        <Volunteers />
+        {/* <Volunteers /> */}
+        <TopMembers />
         <HeroSection3 />
       </ParallaxProvider>
     </>

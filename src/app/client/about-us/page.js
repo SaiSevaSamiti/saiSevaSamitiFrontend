@@ -12,6 +12,7 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination'
 import API from '@/axios'
+import Volunteers from '../home/Volunteers'
 
 const MemberItem = ({ member }) => (
   <div className="w-full p-4 sm:w-1/2 lg:w-1/3">
@@ -107,7 +108,7 @@ export default function AboutUsPage() {
         </div>
 
         <div className="flex justify-center mt-10">
-          <Pagination>
+          {/* <Pagination>
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
@@ -130,9 +131,10 @@ export default function AboutUsPage() {
                 />
               </PaginationItem>
             </PaginationContent>
-          </Pagination>
+          </Pagination> */}
         </div>
       </section>
+      <Volunteers />
     </main>
   )
 }
