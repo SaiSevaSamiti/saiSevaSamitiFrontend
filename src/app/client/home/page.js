@@ -6,7 +6,6 @@ import HeroSection from './HeroSection'
 import OurActivities from './OurActivities'
 import KnowAbout from './KnowAbout'
 import HeroSection2 from './HeroSection2'
-import Volunteers from './Volunteers'
 import ActivitesNumber from './ActivitesNumber'
 import HeroSection3 from './HeroSection3'
 import TopMembers from '../about-us/TopMembers'
@@ -20,7 +19,6 @@ function HomePage() {
         <ActivitesNumber />
         <KnowAbout />
         <HeroSection2 />
-        {/* <Volunteers /> */}
         <TopMembers />
         <HeroSection3 />
       </ParallaxProvider>
