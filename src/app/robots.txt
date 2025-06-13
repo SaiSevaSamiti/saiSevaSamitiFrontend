@@ -1,4 +1,4 @@
 User-agent: *
-  Allow: /
+Allow: /
   
-  Sitemap: https://sai-seva-samiti.vercel.app/sitemap.xml
+Sitemap: https://sai-seva-samiti.vercel.app/sitemap.xml
